@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.urls import reverse
 # Create your views here.
 from users.models import User
-from users.forms import UserLoginForm
+from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 def login(request):
     if request.method == "POST":
@@ -17,8 +17,28 @@ def login(request):
                 return HttpResponseRedirect(reverse('index'))
     else:
         form = UserLoginForm()
-    context = {'form': UserLoginForm()}
+    context = {'title' : 'Авторизация', 'form': form}
     return render(request, 'users/login.html', context)
 
 def registration(request):
-    return render(request, 'users/registration.html')
+    if request.method == "POST":
+        form = UserRegistrationForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:login'))
+        else:
+            form = UserRegistrationForm()
+    context =  {'title' : 'Регистрация', 'form' : UserRegistrationForm()}
+    return render(request, 'users/registration.html', context)
+
+def profile(request):
+    if request.method == "POST":
+        form = UserProfileForm(instance=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:profile'))
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    context = {'title' : 'Профиль', 'form' : form}
+    return render(request, 'users/profile.html', context)
