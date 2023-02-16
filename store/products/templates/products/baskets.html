@@ -7,7 +7,7 @@
             {% for basket in baskets %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{ basket.product.name}}</h5>
+                    <h5 class="card-title">{{ basket.product.name }}</h5>
                     <p class="card-text">{{ basket.product.description }}</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -17,19 +17,18 @@
                                 <input name="basketID" type="number" class="form-control"
                                        value="{{ basket.quantity }}" min="0">
                             </div>
-                            <div class="col-lg-4">{{ basket.sum }}</div>
+                            <div class="col-lg-4">2309 руб.</div>
                             <div class="col-lg-4">
-
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-            {% endfor %}
+    {% endfor %}
             <div class="card mb-3">
                 <div class="card-footer">
                     <p class="float-left">Итого</p>
-                    <h4 class="float-right">{{ baskets.total_sum }}</h4>
+                    <h4 class="float-right">2309 руб.</h4>
                 </div>
             </div>
             <a class="btn btn-success btn-lg float-right" href="../orders/order-create.html">
