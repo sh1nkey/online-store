@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
-# Create your views here.
+
 from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from products.models import Basket
