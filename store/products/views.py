@@ -1,7 +1,7 @@
-from django.shortcuts import render,HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect
 from products.models import Product, ProductCategory, Basket
 from django.contrib.auth.decorators import login_required
-from users.models import User
+
 
 # Create your views here.
 
@@ -13,14 +13,15 @@ def index(request):
     }
     return render(request, 'products/index.html', context)
 
-def products(request):
-    context = {
-        'title': 'Каталог',
-        'products' : Product.objects.all(),
-        'categories ': ProductCategory.objects.all()
 
-    }
+def products(request, category_id=None):
+    products = Product.objects.filter(category_id=category_id) if category_id else Product.objects.all()
+
+    context = {'title': 'Каталог',
+               'categories': ProductCategory.objects.all(),
+               'products': products}
     return render(request, 'products/products.html', context)
+
 
 @login_required
 def basket_add(request, product_id):
@@ -33,6 +34,7 @@ def basket_add(request, product_id):
         basket.quantity += 1
         basket.save()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 
 @login_required
 def basket_remove(request, basket_id):
