@@ -33,7 +33,7 @@ class UserRegistrationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class UserProfileForm(UserChangeForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'form-control py-4', 'readonly': True}))
+    username = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'form-control py-4'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={ 'class': 'form-control py-4', 'readonly': True}))
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input', 'readonly': True}))
     class Meta:

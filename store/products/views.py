@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 from products.models import Product, ProductCategory, Basket
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+
 
 
 # Create your views here.
@@ -33,8 +33,6 @@ class ProductsListView(ListView):
         context['title'] = 'Каталог'
         context['categories'] = ProductCategory.objects.all()
         return context
-
-
 
 def index(request):
     context = {
