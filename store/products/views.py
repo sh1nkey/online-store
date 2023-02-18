@@ -1,26 +1,25 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect
 from products.models import Product, ProductCategory, Basket
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from common.views import TitleMixin
 
 
 
 # Create your views here.
 
 # Функции, т.е. контроллеры, т.е. вьюхи
-class IndexView(TemplateView):
+class IndexView(TitleMixin, TemplateView):
     template_name = 'products/index.html'
+    title = 'Магазин'
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data()
-        context['title'] = 'Store'
-        return context
 
-class ProductsListView(ListView):
+class ProductsListView(TitleMixin, ListView):
     model =  Product
     template_name = 'products/products.html'
     paginate_by = 3
+    title = 'Каталог'
 
     def get_queryset(self):
         queryset = super(ProductsListView, self).get_queryset()
@@ -30,15 +29,9 @@ class ProductsListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
-        context['title'] = 'Каталог'
         context['categories'] = ProductCategory.objects.all()
         return context
 
-def index(request):
-    context = {
-        'title': 'Главная страница',
-    }
-    return render(request, 'products/index.html', context)
 
 
 
