@@ -62,5 +62,5 @@ class EmailVerificationView(TitleMixin, TemplateView):
         else:
             return HttpResponseRedirect(reverse('index'))
 
-    
+
 
