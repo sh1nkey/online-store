@@ -6,7 +6,6 @@ from django.views.generic.list import ListView
 from common.views import TitleMixin
 
 
-
 # Create your views here.
 
 # Функции, т.е. контроллеры, т.е. вьюхи
@@ -16,7 +15,7 @@ class IndexView(TitleMixin, TemplateView):
 
 
 class ProductsListView(TitleMixin, ListView):
-    model =  Product
+    model = Product
     template_name = 'products/products.html'
     paginate_by = 3
     title = 'Каталог'
@@ -26,13 +25,10 @@ class ProductsListView(TitleMixin, ListView):
         category_id = self.kwargs.get('category_id')
         return queryset.filter(category_id=category_id) if category_id else queryset
 
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()
         context['categories'] = ProductCategory.objects.all()
         return context
-
-
 
 
 @login_required
