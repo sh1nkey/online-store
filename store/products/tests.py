@@ -89,12 +89,6 @@ class ProductsListViewTestCase(TestCase):
         path = reverse('products:category', kwargs={'category_id' : category.id})
         response = self.client.get(path)
 
-        print('lol', list(response.context_data['object_list']), "\n", 'kek',
-            list(self.products.filter(category_id=category.id)))
-
-        print(list(response.context_data['object_list']) ==
-            list(self.products.filter(category_id=category.id)))
-
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(response.context_data['title'], 'Каталог')
         self.assertTemplateUsed(response, 'products/products.html')
