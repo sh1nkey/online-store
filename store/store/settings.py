@@ -153,12 +153,12 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # email
-# EMAIL_HOST = 'smtp.yandex.com'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = 'kudelkoaleksej@yandex.ru'
-# EMAIL_USE_SSL = True
-# EMAIL_HOST_PASSWORD = 'ltnb2324'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'kudelkoaleksej@yandex.ru'
+EMAIL_USE_SSL = True
+EMAIL_HOST_PASSWORD = 'ltnb2324'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 
@@ -195,3 +195,8 @@ CACHES = {
         }
     }
 }
+
+#Celery
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'store.settings')
