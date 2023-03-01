@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-c%(j-!ot8=k*rjr7sek&1tq74tu)hr&ej3^m!9b(n4ivk50zzi
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = 'http://127.0.0.1:8000'
 
 # Application definition
 
@@ -201,3 +201,8 @@ CACHES = {
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'store.settings')
+
+
+#Stripe
+STRIPE_PUBLIC_KEY = 'pk_test_51MgpFnF29fByb53Tdkzd91LCVVhFWLD0GpvsJWFbc4s8MuNJFXuJYfcXpzU7EX8pPpRATpCY3qBZ0EhvdEoxktTo00FKZa1EOG'
+STRIPE_SECRET_KEY = 'sk_test_51MgpFnF29fByb53TuGWcOWeC6mLHXRGpwZYgiJ69ZQWWEnUC7hRmbj3ZDLwegfSniDPn7YhpgLQvbhT9dh790F3w00GrOhnG24'
