@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from common.views import TitleMixin
@@ -34,6 +35,13 @@ class OrderListView(TitleMixin, ListView):
         queryset = super(OrderListView, self).get_queryset()
         return queryset.filter(initiator=self.request.user)
 
+class OrderDetailView(DetailView):
+    template_name = 'orders/order.html'
+    model = Order
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data(**kwargs)
+        context['title'] = f'Заказ #{self.object.id}'
+        return context
 class OrderCreateView(CreateView):
     template_name = 'orders/order-create.html'
     form_class = OrderForm
