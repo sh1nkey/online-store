@@ -9,6 +9,7 @@ from common.views import TitleMixin
 from orders.forms import OrderForm
 import stripe
 from store import settings
+from products.models import Basket
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY

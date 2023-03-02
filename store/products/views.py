@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from common.views import TitleMixin
 
 
+
 # Create your views here.
 
 # Функции, т.е. контроллеры, т.е. вьюхи
