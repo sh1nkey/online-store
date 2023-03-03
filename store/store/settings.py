@@ -77,7 +77,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'debug_toolbar',
-    'orders'
+    'orders',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
