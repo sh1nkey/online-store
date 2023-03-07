@@ -1,4 +1,3 @@
-import os
 
 """
 Django settings for store project.
@@ -165,8 +164,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (BASE_DIR / 'static',
-                    )
+
+
+if  DEBUG:
+    STATICFILES_DIRS = (BASE_DIR / 'static',
+                        )
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -189,7 +193,7 @@ else:
     EMAIL_PORT = env('EMAIL_PORT')
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_USE_SSL = env('EMAIL_USE_SSL')
-    EMAIL_HOST_PASSWORD = env('EMAIL_HIST_PASSWORD')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 
 
