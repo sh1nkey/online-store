@@ -49,10 +49,10 @@
 #     class Meta:
 #         ordering = ['-id']
 
-from django.test import TestCase
 from http import HTTPStatus
-from django.urls import reverse
 
+from django.test import TestCase
+from django.urls import reverse
 
 from products.models import Product, ProductCategory
 
